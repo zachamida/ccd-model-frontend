@@ -1,0 +1,2 @@
+# Computer Vision Model (Concrete Cracks Detection) Deployment 
+This is a deployment repo for a streamlit app. The enables uploading images from device or directly by camera to `s3 Bucket` which activates an `AWS Lambda` function.
