@@ -47,9 +47,13 @@ def detect_cracks(upload, upload_img):
     col1.write(":camera: Original Image")
     col1.image(input_resize['image'], use_column_width=True)
     s3.upload_fileobj(upload, Bucket=data_bucket, Key='images/streamlit-input')
-    with st.spinner('Wait for it...'):
-        time.sleep(15)
-    st.success('Done!')
+    progress_text = "Detecting cracks..."
+    my_bar = st.progress(0, text=progress_text)
+    for percent_complete in range(100):
+        time.sleep(0.18)
+        if percent_complete > 98:
+            progress_text = "Done!"
+        my_bar.progress(percent_complete + 1, text=progress_text)
     #paginator = s3.get_paginator('list_objects_v2')
     #result_iterator = paginator.paginate(Bucket=data_bucket, Prefix='masked/')
     #png_files = [obj['Key'] for result in result_iterator for obj in result.get('Contents', []) if obj['Key'].endswith('.png')]
